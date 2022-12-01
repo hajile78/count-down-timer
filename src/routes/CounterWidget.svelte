@@ -1,21 +1,19 @@
 <script lang="ts">
-	import Counter from './Counter.svelte'
-	export let dateStr: string
-    export let countDownTitle: string
+	import Counter from './Counter.svelte';
+	export let dateStr: string;
+	export let countDownTitle: string;
 </script>
 
-<ul>
-	<li>
-		<h1>Count Down to {countDownTitle}</h1>
-		<Counter {dateStr} />
-	</li>
-</ul>
+<div class="counterContainer">
+	<h1>Count Down to {countDownTitle}</h1>
+	<Counter {dateStr} />
+</div>
 
 <style>
-    ul li {
+	.counterContainer {
 		list-style: none;
-        border-radius: 1.5rem;
-        border-color: var(--color-theme-2);
-        border-style: solid;
+		border-radius: 1.5rem;
+		border-color: var(--color-theme-2);
+		border-style: solid;
 	}
 </style>
