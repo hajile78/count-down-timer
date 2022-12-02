@@ -15,5 +15,6 @@
 		border-radius: 1.5rem;
 		border-color: var(--color-theme-2);
 		border-style: solid;
+		margin: 1rem;
 	}
 </style>
