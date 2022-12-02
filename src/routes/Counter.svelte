@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	export let dateStr: string
-	let goalDate = Date.parse(dateStr);
+	export let dateStr: string;
+	
+	let goalDate = Date.parse(dateStr+'T00:00:00.000-04:00');
 	let coundownDays: number;
 	let days: number = 0,
 		hours: number = 0,
@@ -28,7 +29,7 @@
 </script>
 
 <div class="counter">
-	<strong>{new Date(goalDate).toLocaleString()}</strong>
+	<strong>{new Date(goalDate).toDateString()}</strong>
 	<div class="counter-viewport">
 		<div class="counter-digits">
 			<strong>{days} days {hours} hours {min} minutes and {seconds} seconds</strong>
