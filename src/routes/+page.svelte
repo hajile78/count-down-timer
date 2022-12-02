@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import Counter from './Counter.svelte';
 	import CounterWidget from './CounterWidget.svelte';
 	type Counter = {
 		date: string;
@@ -7,26 +8,32 @@
 	};
 
 	export let newCounter: Counter = { date: '', title: '' };
-	let counterList: Counter[] = []
+	let counterList: Counter[] = [];
 
+	function addTolocalStorage(counterList: Counter[]) {
+		localStorage.setItem('counterList', JSON.stringify(counterList));
+	}
 
 	function addToList() {
 		if (!newCounter.date) return;
 		counterList = [...counterList, newCounter];
-		localStorage.setItem('counterList', JSON.stringify(counterList))
+		addTolocalStorage(counterList);
 		newCounter = { date: '', title: '' };
-		console.log(counterList);
+	}
+
+	export function removeFromList(counterTitle: String) {
+		counterList = counterList.filter((item) => item.title !== counterTitle);
+		addTolocalStorage(counterList);
 	}
 
 	onMount(() => {
-		
 		const defaultList = [
-			{ date: '2022-12-24T23:59:00Z', title: 'Christmas' },
+			{ date: '2022-12-24', title: 'Christmas' },
 			{ date: '2023-01-14', title: 'Red River Gorge' }
-		]
-		let local = localStorage.getItem('counterList')
-		counterList = local === null ? defaultList : JSON.parse(local)
-	})
+		];
+		let local = localStorage.getItem('counterList');
+		counterList = local === null ? defaultList : JSON.parse(local);
+	});
 </script>
 
 <svelte:head>
@@ -49,8 +56,8 @@
 </section>
 
 <section>
-	{#each counterList as counter}
-		<CounterWidget dateStr={counter.date} countDownTitle={counter.title} />
+	{#each [...counterList].sort((a, b) => a.date > b.date ? 1 : -1) as counter}
+		<CounterWidget dateStr={counter.date} countDownTitle={counter.title} {removeFromList} />
 	{/each}
 </section>
 
