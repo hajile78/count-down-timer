@@ -8,10 +8,12 @@
 		hours: number = 0,
 		min: number = 0,
 		seconds: number = 0;
-
+	
+	// console.log(`goalDate: ${goalDate} now: ${Date.parse(nowDate)}`)
 	onMount(() => {
 		const loop = () => {
-			coundownDays = goalDate - Date.now();
+			let nowDate = new Date
+			coundownDays = goalDate - Date.parse(nowDate);
 			days = Math.floor(coundownDays / (24 * 60 * 60 * 1000));
 			hours = Math.floor((coundownDays - days * 24 * 60 * 60 * 1000) / (60 * 60 * 1000));
 			min = Math.floor(
@@ -29,7 +31,7 @@
 </script>
 
 <div class="counter">
-	<strong>{new Date(goalDate).toDateString()}</strong>
+	<strong>{new Date(goalDate).toLocaleDateString()}</strong>
 	<div class="counter-viewport">
 		<div class="counter-digits">
 			<strong>{days} days {hours} hours {min} minutes and {seconds} seconds</strong>
