@@ -28,11 +28,11 @@
 
 	onMount(() => {
 		const defaultList = [
-			{ date: '2022-12-24', title: 'Christmas' },
-			{ date: '2023-01-14', title: 'Red River Gorge' }
+			{ date: '2023-05-12', title: 'Put-In-Bay' }
 		];
 		let local = localStorage.getItem('counterList');
-		counterList = local === null ? defaultList : JSON.parse(local);
+		counterList = local === null ? defaultList && defaultList : JSON.parse(local);
+		addTolocalStorage(counterList)
 	});
 </script>
 
