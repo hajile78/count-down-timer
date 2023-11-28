@@ -1,19 +1,23 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { Temporal, Intl, toTemporalInstant } from '@js-temporal/polyfill';
 	export let dateStr: string;
-	
-	let goalDate = Date.parse(dateStr+'T00:00:00.000-04:00');
+
+	// Date.prototype.toTemporalInstant = toTemporalInstant;
+
+	// let goalDate = Date.parse(dateStr+'T00:00:00.000-04:00');
+	let goalDate = Temporal.Instant.from(dateStr + 'T00:00:00.000-05:00').epochMilliseconds;
 	let coundownDays: number;
 	let days: number = 0,
 		hours: number = 0,
 		min: number = 0,
 		seconds: number = 0;
-	
+
 	// console.log(`goalDate: ${goalDate} now: ${Date.parse(nowDate)}`)
 	onMount(() => {
 		const loop = () => {
-			let nowDate = new Date
-			coundownDays = goalDate - Date.parse(nowDate);
+			let nowDate = Temporal.Now.zonedDateTimeISO().epochMilliseconds;
+			coundownDays = goalDate - nowDate;
 			days = Math.floor(coundownDays / (24 * 60 * 60 * 1000));
 			hours = Math.floor((coundownDays - days * 24 * 60 * 60 * 1000) / (60 * 60 * 1000));
 			min = Math.floor(
