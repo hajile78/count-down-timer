@@ -21,18 +21,23 @@
 		newCounter = { date: '', title: '' };
 	}
 
+	function removePastEvents(counterList: Counter[]) {
+		const currentDate = Date.now();
+		const newList: Counter[] = counterList.filter((item) => Date.parse(item.date) < currentDate);
+		addTolocalStorage(newList);
+	}
+
 	export function removeFromList(counterTitle: String) {
 		counterList = counterList.filter((item) => item.title !== counterTitle);
 		addTolocalStorage(counterList);
 	}
 
 	onMount(() => {
-		const defaultList = [
-			{ date: '2023-05-12', title: 'Put-In-Bay' }
-		];
+		const defaultList = [{ date: '2024-01-13', title: 'Ava Trip' }];
 		let local = localStorage.getItem('counterList');
-		counterList = local === null ? defaultList && defaultList : JSON.parse(local);
-		addTolocalStorage(counterList)
+		counterList =
+			local === null || local.length === 2 ? defaultList && defaultList : JSON.parse(local);
+		addTolocalStorage(counterList);
 	});
 </script>
 
@@ -56,7 +61,7 @@
 </section>
 
 <section>
-	{#each [...counterList].sort((a, b) => a.date > b.date ? 1 : -1) as counter}
+	{#each [...counterList].sort((a, b) => (a.date > b.date ? 1 : -1)) as counter}
 		<CounterWidget dateStr={counter.date} countDownTitle={counter.title} {removeFromList} />
 	{/each}
 </section>
