@@ -50,7 +50,7 @@
 	<form class="content" on:submit|preventDefault={addToList}>
 		<label>
 			date
-			<input type="date" bind:value={newCounter.date} placeholder="YYYY-MM-DD" />
+			<input type="datetime-local" bind:value={newCounter.date} placeholder="YYYY-MM-DD --:-- --" />
 		</label>
 		<label>
 			title
