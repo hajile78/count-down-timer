@@ -53,13 +53,8 @@
 		flex-direction: column;
 	}
 
-	.counter {
-		align-items: center;
-		justify-content: center;
-	}
-
 	.counter-viewport {
-		width: 42em;
+		max-width: 24	em;
 		height: 4em;
 		overflow: hidden;
 		text-align: center;
@@ -73,7 +68,7 @@
 		height: 100%;
 		font-weight: 400;
 		color: var(--color-theme-1);
-		font-size: 2rem;
+		font-size: 1.25rem;
 		align-items: center;
 		justify-content: center;
 	}
