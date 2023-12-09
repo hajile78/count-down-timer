@@ -54,7 +54,7 @@
 	}
 
 	.counter-viewport {
-		max-width: 24	em;
+		max-width: 24rem;
 		height: 4em;
 		overflow: hidden;
 		text-align: center;
