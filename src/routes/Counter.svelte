@@ -6,7 +6,7 @@
 	// Date.prototype.toTemporalInstant = toTemporalInstant;
 
 	// let goalDate = Date.parse(dateStr+'T00:00:00.000-04:00');
-	let goalDate = Temporal.Instant.from(dateStr + 'T00:00:00.000-05:00').epochMilliseconds;
+	let goalDate = Temporal.Instant.from(dateStr + '-05:00').epochMilliseconds;
 	let coundownDays: number;
 	let days: number = 0,
 		hours: number = 0,
