@@ -18,6 +18,7 @@
 		border-color: var(--color-theme-2);
 		border-style: solid;
 		margin: 1rem;
+		padding: 1rem;
 		position: relative;
 	}
 
