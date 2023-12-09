@@ -69,7 +69,8 @@
 <style>
 	section {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
+		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
 		flex: 0.6;
